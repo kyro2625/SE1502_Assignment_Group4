@@ -7,6 +7,8 @@ GO
 USE SE1502_Assignment_Group04
 GO
 
+CREATE TABLE tblAdmin(AdminID nvarchar(50) PRIMARY KEY, AdminPassword nvarchar(50) NOT NULL, AdminName nvarchar(100) NOT NULL)
+
 CREATE TABLE tblCategory(CategoryID char(10) PRIMARY KEY NOT NULL, CategoryName nvarchar(50), 
 		CategoryDescription nvarchar(200))
 
