@@ -44,23 +44,45 @@ public class UserServlet extends HttpServlet {
             String displayView = "mainUserPage.jsp";
             String controllerServlet = "UserServlet?action=mainPage";
 
-            if (action.equals("mainPage")) {
+            if (action.equalsIgnoreCase("mainPage")) {
                 HttpSession session = request.getSession(false);
                 if (session != null) {
                     ArrayList<Category> listCate = new ArrayList<>();
-                    
+
                     UserDAO dao = new UserDAO();
-                    
+
                     request.setAttribute("data2", listCate);
                     request.setAttribute("hello", welcome);
                     RequestDispatcher rd = request.getRequestDispatcher(displayView);
                     rd.forward(request, response);
-                    
+
                 } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("Login.html");
-                    
+                    RequestDispatcher rd = request.getRequestDispatcher("userLoginPage.jsp");
+
                     rd.forward(request, response);
                 }
+
+            } else if (action.equalsIgnoreCase("addu")) {
+                User u = new User();
+                request.setAttribute("pObject", u);
+                request.setAttribute("msg", "Register a user");
+                request.setAttribute("action", "addUser");
+                RequestDispatcher rd = request.getRequestDispatcher("userform.jsp");
+                rd.forward(request, response);
+
+            } else if (action.endsWith("addUser")) {
+                String name = request.getParameter("names");
+                String email = request.getParameter("email");
+
+                String accountName = request.getParameter("accountName");
+                String password = request.getParameter("password");
+                UserDAO dao = new UserDAO();
+                User u = new User(accountName, password, name, email);
+                dao.addUser(u);
+                response.sendRedirect("userLoginPage.jsp");
+
+            } else if (action.equals("rollback")) {
+                response.sendRedirect("Login.html");
 
             }
         }
