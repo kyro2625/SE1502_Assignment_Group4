@@ -33,6 +33,10 @@
                 <button type="submit">Login</button>
             </form>
         </div>
+
+        <div>
+            <a href="UserServlet?action=registerUser">Create an account</a>
+        </div>
         <script type="text/javascript">
 
             $(document).ready(function () {

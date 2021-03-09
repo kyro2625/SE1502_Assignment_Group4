@@ -24,7 +24,11 @@
             String action = (String) request.getAttribute("action");
             String welcomePage = "userLoginPage.jsp";
         %>
-
+      
+        <% if (request.getParameter("error")!=null) {%>
+        <h2>This User ID has already existed please use it to login or try a different User ID</h2>
+        <%}%>
+        
         <div class="signup-form">
             <form action="UserServlet?action=<%=action%>" method="POST" name="f1">
                 <h2>Sign Up</h2>
@@ -37,7 +41,7 @@
                                 <i class="fa fa-user"></i>
                             </span>
                         </div>
-                        <input type="text" class="form-control" name="accountName" placeholder="Username" required="required">
+                        <input type="text" class="form-control" name="userID" placeholder="UserID" required="required">
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,7 +61,7 @@
                                 <span class="fa fa-address-book"></span>
                             </span>
                         </div>
-                        <input type="text" class="form-control" name="names" placeholder="Name">
+                        <input type="text" class="form-control" name="userName" placeholder="UserName">
                     </div>
                 </div>
                 <div class="form-group">
@@ -70,13 +74,22 @@
                         <input type="text" class="form-control" name="email" placeholder="Email">
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <span class="fa fa-address-book"></span>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" name="address" placeholder="Address">
+                    </div>
+                </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
                 </div>
             </form>
 
-            <div class="text-center">Already have an account? <a href="BookandUserManagementServlet?action=rollback">Login here</a></div>
+            <div class="text-center">Already have an account? <a href="UserServlet?action=rollback">Login here</a></div>
         </div>
 
     </body>

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,14 +38,16 @@ public class UserServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            boolean checkCreateUserExist = false;
             String action = request.getParameter("action");
             String welcome = (String) request.getAttribute("name");
             String displayView = "mainUserPage.jsp";
             String controllerServlet = "UserServlet?action=mainPage";
 
+            ///go to mainPage for User
             if (action.equalsIgnoreCase("mainPage")) {
                 HttpSession session = request.getSession(false);
                 if (session != null) {
@@ -62,27 +66,40 @@ public class UserServlet extends HttpServlet {
                     rd.forward(request, response);
                 }
 
-            } else if (action.equalsIgnoreCase("addu")) {
+                //go to the registrationUserPage    
+            } else if (action.equalsIgnoreCase("registerUser")) {
                 User u = new User();
                 request.setAttribute("pObject", u);
                 request.setAttribute("msg", "Register a user");
-                request.setAttribute("action", "addUser");
-                RequestDispatcher rd = request.getRequestDispatcher("userform.jsp");
+                request.setAttribute("action", "createUser");
+
+                RequestDispatcher rd = request.getRequestDispatcher("registrationUserPage.jsp");
                 rd.forward(request, response);
 
-            } else if (action.endsWith("addUser")) {
-                String name = request.getParameter("names");
+                //create an account for user to login     
+            } else if (action.endsWith("createUser")) {
+                String name = request.getParameter("userName");
                 String email = request.getParameter("email");
-
-                String accountName = request.getParameter("accountName");
+                String address = request.getParameter("address");
+                String userID = request.getParameter("userID");
                 String password = request.getParameter("password");
                 UserDAO dao = new UserDAO();
-                User u = new User(accountName, password, name, email);
-                dao.addUser(u);
-                response.sendRedirect("userLoginPage.jsp");
+                User user = new User(userID, password, name, email, address);
 
+                //check if create user success or not
+                boolean createUserAccount = dao.createUserAccount(user);
+                if (createUserAccount) {
+                    response.sendRedirect("userLoginPage.jsp");
+                } else if (!createUserAccount) {
+                    out.println("Already exist");
+                    checkCreateUserExist = true;
+                    response.sendRedirect("UserServlet?action=registerUser&error=true");
+
+                }
+
+                //rollback to the userLoginPage when the user already have an account    
             } else if (action.equals("rollback")) {
-                response.sendRedirect("Login.html");
+                response.sendRedirect("userLoginPage.jsp");
 
             }
         }
@@ -100,7 +117,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -114,7 +135,11 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

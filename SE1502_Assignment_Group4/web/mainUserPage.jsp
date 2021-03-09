@@ -12,6 +12,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div>
+            <img src="images/fpt_logo.jpg" alt="FPT logo" width="100" height="100"/>
+            <img src="https://www.w3schools.com/images/lamp.jpg" alt="Lamp" width="32" height="32">
+
+        </div>
         <div style="text-align: center">
             <h1>Welcome to User Panel</h1>
             <b>${names}</b>
