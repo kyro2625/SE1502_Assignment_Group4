@@ -22,8 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author nguye
  */
-@WebServlet(name = "AddCategoryServlet", urlPatterns = {"/Add"
-        + "CategoryServlet"})
+@WebServlet(name = "AddCategoryServlet", urlPatterns = {"/AddCategoryServlet"})
 public class AddCategoryServlet extends HttpServlet {
 
     /**
