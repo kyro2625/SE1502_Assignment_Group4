@@ -9,14 +9,41 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="refresh" content="5;URL=./UserServlet?action=mainPage">
         <title>JSP Page</title>
     </head>
     <body>
         <div style="text-align: center">
             <h1>Welcome to User Panel</h1>
-            <b>${names}</b>
+            <b>Hello ${names}</b>
 
             <br><br>
+            <h3>
+                Redirecting to main page after <span id="countdown">5</span> seconds
+            </h3>
+            <!-- JavaScript part -->
+            <script type="text/javascript">
+
+                // Total seconds to wait
+                var seconds = 5;
+                var redirect = "/SE1502_Assignment_Group4/UserServlet?action=mainPage"
+                function countdown() {
+                    seconds = seconds - 1;
+                    if (seconds < 0) {
+                        // Chnage your redirection link here
+                        window.location.href = redirect;
+                    } else {
+                        // Update remaining seconds
+                        document.getElementById("countdown").innerHTML = seconds;
+                        // Count down using javascript
+                        window.setTimeout("countdown()", 1000);
+                    }
+                }
+
+                // Run countdown function
+                countdown();
+
+            </script>
             <a href="UserServlet?action=mainPage">View main page</a>
         </div>
     </body>
