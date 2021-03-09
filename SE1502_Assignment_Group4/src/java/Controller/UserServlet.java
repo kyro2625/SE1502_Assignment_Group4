@@ -57,13 +57,14 @@ public class UserServlet extends HttpServlet {
 
                     request.setAttribute("data2", listCate);
                     request.setAttribute("hello", welcome);
+
                     RequestDispatcher rd = request.getRequestDispatcher(displayView);
                     rd.forward(request, response);
 
                 } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("userLoginPage.jsp");
-
-                    rd.forward(request, response);
+//                    RequestDispatcher rd = request.getRequestDispatcher("userLoginPage.jsp");
+                    response.sendRedirect("userLoginPage.jsp");
+//                    rd.forward(request, response);
                 }
 
                 //go to the registrationUserPage    

@@ -13,6 +13,26 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+//allow access only if session exists
+            String user = (String) session.getAttribute("names");
+            String userName = null;
+            String sessionID = null;
+            Cookie[] cookies = request.getCookies();
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("names")) {
+                        userName = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("JSESSIONID")) {
+                        sessionID = cookie.getValue();
+                    }
+                }
+            }
+        %>
+        <h3>Hi <%=userName%>, Login successful. Your Session ID=<%=sessionID%></h3>
+        <br>
+        User=<%=user%>
         <div style="text-align: center">
             <h1>Welcome to User Panel</h1>
             <b>Hello ${names}</b>
