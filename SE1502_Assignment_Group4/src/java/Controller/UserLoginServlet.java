@@ -53,7 +53,7 @@ public class UserLoginServlet extends HttpServlet {
                 session.setAttribute("user", user);
                 destPage = "welcomeUserPage.jsp";
             } else {
-                String message = "Invalid email/password";
+                String message = "Invalid User ID or Password, please try again";
                 request.setAttribute("message", message);
             }
 
