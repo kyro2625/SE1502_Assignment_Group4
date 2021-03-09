@@ -24,7 +24,7 @@ public class CategoryDAO {
         Connection con = null;
         PreparedStatement pstm = null;
         String sql = "INSERT INTO tblCategory(CategoryID,CategoryName,CategoryDescription) "
-                + "VALUES (?, ?, ?)";
+                + "VALUES (?,?,?)";
 
         try {
             con = DBConnect.makeConnection();

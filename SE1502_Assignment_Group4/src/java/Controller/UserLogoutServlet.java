@@ -58,18 +58,4 @@ public class UserLogoutServlet extends HttpServlet {
         }
         response.sendRedirect("userLoginPage.jsp");
     }
-
-//    HttpSession session = request.getSession(false);
-//    if (session!= null) {
-//            session.removeAttribute("user");
-//        session.invalidate();
-//    }
-//    RequestDispatcher dispatcher = request.getRequestDispatcher("userLoginPage.jsp");
-//
-//    dispatcher.forward (request, response);
-//        if (session != null) {
-//            session.removeAttribute("user"); //remove session
-//        }
-//        response.sendRedirect(request.getContextPath() + "/login");
-//    }
 }
