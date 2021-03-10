@@ -21,7 +21,7 @@ public class DBConnect {
     public static Connection makeConnection() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=SE1502_Assignment_Group04";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SE1502_Assignment_Group04;setUnicode=true&characterEncoding=UTF-8";
             Connection con = DriverManager.getConnection(url, "sa", "123456789");
             return con;
         } catch (ClassNotFoundException e) {

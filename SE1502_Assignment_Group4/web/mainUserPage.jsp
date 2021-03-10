@@ -22,7 +22,13 @@
             <b>${names}</b>
 
             <br><br>
-            <a href="logout">Logout</a>
-        </div>    
+
+            <a href="AddCategoryServlet?action=createCategory">Add New Category</a>
+
+        </div>  
+        <form action="UserLogoutServlet" method="POST">
+            <input type="submit" value="Logout" >
+
+        </form>
     </body>
 </html>

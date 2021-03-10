@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author nguye
  */
-@WebServlet(name = "UserLoginServlet", urlPatterns = {"/login"})
+@WebServlet(name = "UserLoginServlet", urlPatterns = {"/UserLoginServlet"})
 public class UserLoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -46,20 +47,30 @@ public class UserLoginServlet extends HttpServlet {
             String destPage = "userLoginPage.jsp";
 
             if (user != null) {
+                 HttpSession oldSession = request.getSession(false);
+                if (oldSession != null) {
+                    oldSession.invalidate();
+                }
                 HttpSession session = request.getSession();
                 String names = user.getUserName();
+                String userIDcookie = user.getUserID().trim();
                 session.setAttribute("names", names);
-
-                session.setAttribute("user", user);
-                destPage = "welcomeUserPage.jsp";
+                //setting session to expiry in 30 mins
+                session.setMaxInactiveInterval(30 * 60);
+                Cookie userName = new Cookie("user", userID);
+                userName.setMaxAge(30 * 60);
+                response.addCookie(userName);
+                response.sendRedirect("welcomeUserPage.jsp");
             } else {
                 String message = "Invalid User ID or Password, please try again";
                 request.setAttribute("message", message);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+
+                dispatcher.forward(request, response);
             }
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-            dispatcher.forward(request, response);
-
+//            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+//            dispatcher.forward(request, response);
         } catch (SQLException | ClassNotFoundException ex) {
             throw new ServletException(ex);
         } catch (Exception ex) {
