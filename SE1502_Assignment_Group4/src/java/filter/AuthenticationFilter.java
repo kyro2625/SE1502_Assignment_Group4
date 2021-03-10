@@ -17,38 +17,35 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/AuthenticationFilter")
 public class AuthenticationFilter implements Filter {
 
-	private ServletContext context;
-	
-	public void init(FilterConfig fConfig) throws ServletException {
-		this.context = fConfig.getServletContext();
-		this.context.log("AuthenticationFilter initialized");
-	}
-	
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    private ServletContext context;
 
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		
-		String uri = req.getRequestURI();
-		this.context.log("Requested Resource::"+uri);
-		
-		HttpSession session = req.getSession(false);
-		
-		if(session == null && !(uri.endsWith("userLoginPage.jsp") && !(uri.endsWith("registrationUserPage.jsp") || uri.endsWith("UserLoginServlet")))){
-			this.context.log("Unauthorized access request");
-			res.sendRedirect("userLoginPage.jsp");
-		}else{
-			// pass the request along the filter chain
-			chain.doFilter(request, response);
-		}
-		
-		
-	}
+    public void init(FilterConfig fConfig) throws ServletException {
+        this.context = fConfig.getServletContext();
+        this.context.log("AuthenticationFilter initialized");
+    }
 
-	
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-	public void destroy() {
-		//close any resources here
-	}
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+
+        String uri = req.getRequestURI();
+        this.context.log("Requested Resource::" + uri);
+
+        HttpSession session = req.getSession(false);
+
+        if (session == null && !(uri.endsWith("userLoginPage.jsp") && !(uri.endsWith("registrationUserPage.jsp") && !(uri.endsWith("UserServlet?action=registerUser") || uri.endsWith("UserLoginServlet"))))) {
+            this.context.log("Unauthorized access request");
+            res.sendRedirect("userLoginPage.jsp");
+        } else {
+            // pass the request along the filter chain
+            chain.doFilter(request, response);
+        }
+
+    }
+
+    public void destroy() {
+        //close any resources here
+    }
 
 }

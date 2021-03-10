@@ -1,10 +1,10 @@
-<%-- 
+<%--
     Document   : mainUserPage
     Created on : Mar 7, 2021, 10:11:58 PM
     Author     : nguye
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +25,7 @@
 
             <a href="AddCategoryServlet?action=createCategory">Add New Category</a>
 
-        </div>  
+        </div>
         <form action="UserLogoutServlet" method="POST">
             <input type="submit" value="Logout" >
 

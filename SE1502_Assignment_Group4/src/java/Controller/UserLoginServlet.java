@@ -47,7 +47,7 @@ public class UserLoginServlet extends HttpServlet {
             String destPage = "userLoginPage.jsp";
 
             if (user != null) {
-                 HttpSession oldSession = request.getSession(false);
+                HttpSession oldSession = request.getSession(false);
                 if (oldSession != null) {
                     oldSession.invalidate();
                 }
@@ -60,7 +60,7 @@ public class UserLoginServlet extends HttpServlet {
                 Cookie userName = new Cookie("user", userID);
                 userName.setMaxAge(30 * 60);
                 response.addCookie(userName);
-                response.sendRedirect("welcomeUserPage.jsp");
+                response.sendRedirect("mainUserPage.jsp");
             } else {
                 String message = "Invalid User ID or Password, please try again";
                 request.setAttribute("message", message);

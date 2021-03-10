@@ -1,17 +1,17 @@
-<%-- 
+<%--
     Document   : userLoginPage
     Created on : Mar 7, 2021, 9:49:36 PM
     Author     : nguye
 --%>
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8"%>
+         pageEncoding="utf-8" session="true"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--===============================================================================================-->	
+        <!--===============================================================================================-->
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -21,13 +21,13 @@
         <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <!--===============================================================================================-->	
+        <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <!--===============================================================================================-->	
+        <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -43,7 +43,7 @@
                         <span class="login100-form-title p-b-30">
                             <strong>Login</strong>
                         </span>
-                        <span class="login100-form-title p-b-20" style="font-size: 100%;color: red">                        
+                        <span class="login100-form-title p-b-20" style="font-size: 100%;color: red">
                             <strong>${message}</strong>
                         </span>
                         <div class="p-t-31 p-b-9">

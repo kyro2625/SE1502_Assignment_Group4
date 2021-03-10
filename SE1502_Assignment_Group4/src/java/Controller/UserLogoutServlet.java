@@ -44,17 +44,24 @@ public class UserLogoutServlet extends HttpServlet {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("JSESSIONID")) {
-                    System.out.println("JSESSIONID=" + cookie.getValue());
-                    break;
-                }
+//                if (cookie.getName().equals("JSESSIONID")) {
+//                    System.out.println("JSESSIONID=" + cookie.getValue());
+                cookie.setValue("");
+                cookie.setPath(request.getRequestURI());
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+                break;
+//                }
             }
         }
         //invalidate the session if exists
         HttpSession session = request.getSession(false);
         System.out.println("User=" + session.getAttribute("user"));
         if (session != null) {
+            session.removeAttribute("user");
             session.invalidate();
+
+            session.setMaxInactiveInterval(0);
         }
         response.sendRedirect("userLoginPage.jsp");
     }
