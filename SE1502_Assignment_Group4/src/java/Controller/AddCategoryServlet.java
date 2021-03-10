@@ -81,7 +81,7 @@ public class AddCategoryServlet extends HttpServlet {
 
                     } catch (Exception e) {
                         request.setAttribute("msg", "Please enter the right format");
-                        RequestDispatcher rd = request.getRequestDispatcher("AddCategoryServlet?action=addNewCategory");
+                        RequestDispatcher rd = request.getRequestDispatcher("AddCategoryServlet?action=createCategory");
                         rd.forward(request, response);
                     }
                 }

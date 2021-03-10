@@ -5,12 +5,14 @@
  */
 package DAO;
 
+import Entities.Category;
 import Entities.Product;
 import UTILS.DBConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -20,6 +22,80 @@ import javax.naming.NamingException;
  * @author Thinkpro
  */
 public class ProductDAO {
+
+    public boolean addProduct(Product p) throws NamingException, SQLException, Exception {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        String sql = "INSERT INTO tblProduct(ProductID,ProductName,ProductBrand,ProductDescription,ProductStatus,Price,ImageURL,CategoryID) "
+                + "VALUES (?,?,?,?,?,?,?,?)";
+
+        try {
+            con = DBConnect.getConnection();
+            if (con != null) {
+                pstm = con.prepareStatement(sql);
+                pstm.setString(1, p.getProductID());
+                pstm.setString(2, p.getProductName());
+                pstm.setString(3, p.getProductBrand());
+                pstm.setString(4, p.getProductDescription());
+                pstm.setString(5, p.getProductStatus());
+                pstm.setString(6, p.getPrice());
+                pstm.setString(7, p.getImageURL());
+                pstm.setString(8, p.getCategoryID());
+
+                pstm.executeUpdate();
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (pstm != null) {
+                pstm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Category> getAllCategory() throws NamingException, SQLException, Exception {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        String sql = "SELECT c.* FROM tblCategory c ORDER BY c.CategoryID";
+
+        ArrayList<Category> lst = new ArrayList<>();
+
+        try {
+            con = DBConnect.getConnection();
+            if (con != null) {
+                pstm = con.prepareStatement(sql);
+                rs = pstm.executeQuery();
+
+                while (rs.next()) {
+                    String id = rs.getString("CategoryID");
+                    String name = rs.getString("CategoryName");
+                    String Des = rs.getString("CategoryDescription");
+
+                    Category c = new Category(id, name, Des); //DTO
+
+                    lst.add(c);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstm != null) {
+                pstm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return lst;
+    }
 
     public boolean deleteProduct(String ProductID) throws SQLException {
         Connection con = null;
