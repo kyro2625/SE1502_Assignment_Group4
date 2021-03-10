@@ -5,7 +5,7 @@
 --%>
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
-         pageEncoding="utf-8" session="true"%>
+         pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,7 +77,8 @@
         </style>
     </head>
     <body style="background-color: wheat">
-        <strong>${message}</strong>
+        <br>  <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br>
+
 
         <form action="UserLoginServlet" method="POST" name="f1">
             <div class="container">
@@ -97,7 +98,7 @@
             </div>
 
             <div class="container signin">
-                <p>Already have an account? <a href="#">Sign in</a>.</p>
+                <p>Don't have an account? <a href="UserServlet?action=registerUser">Create one here</a>.</p>
             </div>
         </form>
 
