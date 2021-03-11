@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -205,4 +206,66 @@ public class ProductDAO {
         }
         return false;
     }
+    
+      private List<Product> products;
+
+    public ProductDAO() {
+        try {
+            this.products = getAllProducts();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Product> findAll() {
+        return this.products;
+    }
+
+    public Product find(String id) {
+        for (Product product : this.products) {
+            if (product.getProductID().equalsIgnoreCase(id)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Product> getAllProducts() throws NamingException, SQLException, Exception {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM tblProduct";
+        ArrayList<Product> lst = new ArrayList<>();
+        try {
+            con = DBConnect.getConnection();
+            if (con != null) {
+                pstm = con.prepareStatement(sql);
+                rs = pstm.executeQuery();
+                while (rs.next()) {
+                    String id = rs.getString("ProductID");
+                    String name = rs.getString("ProductName");
+                    String brand = rs.getString("ProductBrand");
+                    String des = rs.getString("ProductDescription");
+                    String sta = rs.getString("ProductStatus");
+                    String price = rs.getString("Price");
+                    String img = rs.getString("ImageURL");
+                    String cateID = rs.getString("CategoryID");
+                    Product p= new Product(id, name, brand, des, sta, price, img, cateID);
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if(pstm!=null){
+                pstm.close();
+            }
+            if(con!=null){
+                con.close();
+            }
+        }
+        return lst;
+    }
+
 }

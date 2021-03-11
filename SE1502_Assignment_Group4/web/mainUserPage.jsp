@@ -24,7 +24,9 @@
             <br><br>
 
             <a href="AddCategoryServlet?action=createCategory">Add New Category</a>
-
+            <br>
+            <a href="ProductServlet">View Product</a>
+            <br>
             <a href="AddProductServlet?action=createProduct">Add New Product</a>
             <img src="${pageContext.request.contextPath}/images/81630388_p0.jpg" alt="alt" height="50%" width="50%"/>
         </div>
