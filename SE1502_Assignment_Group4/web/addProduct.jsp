@@ -71,7 +71,7 @@
 
                 <tr>
                     <td><label>Product Image</label></td>
-                    <td><input type="file" name="photo" value="" class="w3-input"></td>
+                    <td><input type="file" name="photo" value="" class="w3-input" accept="image/*"></td>
                 </tr>
 
 

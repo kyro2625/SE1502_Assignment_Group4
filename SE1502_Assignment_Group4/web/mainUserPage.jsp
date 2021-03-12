@@ -29,6 +29,8 @@
             <br>
             <a href="AddProductServlet?action=createProduct">Add New Product</a>
             <img src="${pageContext.request.contextPath}/images/81630388_p0.jpg" alt="alt" height="50%" width="50%"/>
+            <img src="images/IMG_20210227_133325.jpg" alt="alt" height="50%" width="50%"/>
+
         </div>
         <form action="UserLogoutServlet" method="POST">
             <input type="submit" value="Logout" >

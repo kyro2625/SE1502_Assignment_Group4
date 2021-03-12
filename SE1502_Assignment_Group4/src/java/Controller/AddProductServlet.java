@@ -33,7 +33,6 @@ import javax.servlet.http.Part;
  *
  * @author nguye
  */
-
 @MultipartConfig(
         fileSizeThreshold = 1024 * 1024 * 10,
         maxFileSize = 1024 * 1024 * 50,
@@ -123,7 +122,9 @@ public class AddProductServlet extends HttpServlet {
             Part filePart = request.getPart("photo");
             fileName = (String) getFileName(filePart);
             String applicationPath = request.getServletContext().getRealPath("");
-            String basePath = applicationPath + File.separator + UPLOAD_DIR + File.separator;
+            int end = applicationPath.lastIndexOf("build");
+            String truePath = applicationPath.substring(0, end) + "web";
+            String basePath = truePath + File.separator + UPLOAD_DIR + File.separator;
             InputStream inputStream = null;
             OutputStream outputStream = null;
             try {
