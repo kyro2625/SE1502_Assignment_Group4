@@ -92,12 +92,12 @@ public class AddProductServlet extends HttpServlet {
 
                         ProductDAO dao = new ProductDAO();
 
-                        String id = request.getParameter("id");
+                        int id = Integer.parseInt(request.getParameter("id"));
                         String name = request.getParameter("name");
                         String brand = request.getParameter("brand");
                         String description = request.getParameter("description");
                         String status = request.getParameter("status");
-                        String price = request.getParameter("price");
+                        float price = Float.parseFloat(request.getParameter("price"));
 //                        String imageURL = request.getParameter("photo");
                         String imageURL = uploadFile(request);
                         String categoryID = request.getParameter("categoryID");

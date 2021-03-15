@@ -1,8 +1,3 @@
-
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- 
 package Controller;
 
 import DAO.ProductDAO;
@@ -61,7 +56,8 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-        int index = isExisting(request.getParameter("id"), cart);
+        int index = isExisting(Integer.parseInt(request.getParameter("id")), cart);
+        cart.remove(index);
         session.setAttribute("cart", cart);
 
         response.sendRedirect("CartServlet");
@@ -75,26 +71,28 @@ public class CartServlet extends HttpServlet {
 
         if (session.getAttribute("cart") == null) {
             List<CartItem> cart = new ArrayList<CartItem>();
-            cart.add(new CartItem(prod.find(request.getParameter("id")), 1));
+            
+            cart.add(new CartItem(prod.find(Integer.parseInt(request.getParameter("id"))), 1));
             session.setAttribute("cart", cart);
         } else {
+           
+
             List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
-            int index = isExisting(request.getParameter("id"), cart);
-            if (index == -1) {
-                cart.add(new CartItem(prod.find(request.getParameter("id")), 1));
-            }
-            else {
-                int quantity = cart.get(index).getQuantity()+1;
+            int index = isExisting(Integer.parseInt(request.getParameter("id")), cart);
+            if (index < 0) {
+                cart.add(new CartItem(prod.find(Integer.parseInt(request.getParameter("id"))), 1));
+            } else {
+                int quantity = cart.get(index).getQuantity() + 1;
                 cart.get(index).setQuantity(quantity);
             }
             session.setAttribute("cart", cart);
         }
         response.sendRedirect("CartServlet");
     }
-    
-    private int isExisting(String id, List<CartItem> cart) {
-        for(int i = 0; i < cart.size(); i++){
-            if (cart.get(i).getProduct().getProductID().equalsIgnoreCase(id)){
+
+    private int isExisting(int id, List<CartItem> cart) {
+        for (int i = 0; i < cart.size(); i++) {
+            if (cart.get(i).getProduct().getProductID()==id) {
                 return i;
             }
         }

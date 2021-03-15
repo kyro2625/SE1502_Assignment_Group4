@@ -34,12 +34,12 @@ public class ProductDAO {
             con = DBConnect.getConnection();
             if (con != null) {
                 pstm = con.prepareStatement(sql);
-                pstm.setString(1, p.getProductID());
+                pstm.setInt(1, p.getProductID());
                 pstm.setString(2, p.getProductName());
                 pstm.setString(3, p.getProductBrand());
                 pstm.setString(4, p.getProductDescription());
                 pstm.setString(5, p.getProductStatus());
-                pstm.setString(6, p.getPrice());
+                pstm.setDouble(6, p.getPrice());
                 pstm.setString(7, p.getImageURL());
                 pstm.setString(8, p.getCategoryID());
 
@@ -141,10 +141,10 @@ public class ProductDAO {
                 pstm.setString(1, ProductID);
                 rs = pstm.executeQuery();
                 if (rs.next()) {
-                    String id = rs.getString("ProductID");
+                    int id = rs.getInt("ProductID");
                     String name = rs.getString("ProductName");
                     String brand = rs.getString("ProductBrand");
-                    String price = rs.getString("ProductPrice");
+                    float price = rs.getFloat("ProductPrice");
                     String description = rs.getString("ProductDescription");
                     String status = rs.getString("ProductStatus");
                     String imageurl = rs.getString("ImageURL");
@@ -184,10 +184,10 @@ public class ProductDAO {
                 pstm.setString(2, tmp.getProductBrand());
                 pstm.setString(3, tmp.getProductDescription());
                 pstm.setString(4, tmp.getProductStatus());
-                pstm.setString(5, tmp.getPrice());
+                pstm.setDouble(5, tmp.getPrice());
                 pstm.setString(6, tmp.getImageURL());
                 pstm.setString(7, tmp.getCategoryID());
-                pstm.setString(8, tmp.getProductID());
+                pstm.setInt(8, tmp.getProductID());
                 pstm.executeQuery();
                 return true;
             }
@@ -222,9 +222,12 @@ public class ProductDAO {
         return this.products;
     }
 
-    public Product find(String id) {
+    public Product find(int id) {
+        
         for (Product product : this.products) {
-            if (product.getProductID().equalsIgnoreCase(id)) {
+           
+            if (product.getProductID()==id) {
+              
                 return product;
             }
         }
@@ -243,15 +246,16 @@ public class ProductDAO {
                 pstm = con.prepareStatement(sql);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
-                    String id = rs.getString("ProductID");
+                    int id = rs.getInt("ProductID");
                     String name = rs.getString("ProductName");
                     String brand = rs.getString("ProductBrand");
                     String des = rs.getString("ProductDescription");
                     String sta = rs.getString("ProductStatus");
-                    String price = rs.getString("Price");
+                    float price = rs.getFloat("Price");
                     String img = rs.getString("ImageURL");
                     String cateID = rs.getString("CategoryID");
                     Product p= new Product(id, name, brand, des, sta, price, img, cateID);
+                    lst.add(p);
                 }
             }
         } finally {

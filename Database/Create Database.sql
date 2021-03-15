@@ -1,10 +1,10 @@
 USE [master]
 GO
 
-CREATE DATABASE SE1502_Assignment_Group04
+CREATE DATABASE SE1502_Assignment_Group04_test1
 GO
 
-USE SE1502_Assignment_Group04
+USE SE1502_Assignment_Group04_test1
 GO
 
 CREATE TABLE tblAdmin(AdminID nvarchar(50) PRIMARY KEY, AdminPassword nvarchar(50) NOT NULL, AdminName nvarchar(100) NOT NULL)
@@ -13,8 +13,8 @@ CREATE TABLE tblCategory(CategoryID char(10) PRIMARY KEY NOT NULL, CategoryName 
 		CategoryDescription nvarchar(200))
 
 
-CREATE TABLE tblProduct(ProductID char(10) PRIMARY KEY NOT NULL, ProductName nvarchar(100) NOT NULL, ProductBrand nvarchar(100),
-		ProductDescription nvarchar(200), ProductStatus nvarchar(50), Price nvarchar(50) , 
+CREATE TABLE tblProduct(ProductID int PRIMARY KEY NOT NULL, ProductName nvarchar(100) NOT NULL, ProductBrand nvarchar(100),
+		ProductDescription nvarchar(200), ProductStatus nvarchar(50), Price float , 
 		ImageURL nvarchar(100), CategoryID char(10) FOREIGN KEY REFERENCES tblCategory(CategoryID) on delete cascade on update cascade)
 
 
@@ -31,6 +31,6 @@ CREATE TABLE tblOrder(OrderID char(50) PRIMARY KEY NOT NULL,
 
 CREATE TABLE tblOrderDetail(OrderDetailID nvarchar(50) PRIMARY KEY NOT NULL, 
 	OrderID char(50) FOREIGN KEY REFERENCES tblOrder(OrderID) on delete cascade on update cascade, 
-		ProductID char(10) FOREIGN KEY REFERENCES tblProduct(ProductID) on delete cascade on update cascade, Quantity INT)
+		ProductID int FOREIGN KEY REFERENCES tblProduct(ProductID) on delete cascade on update cascade, Quantity INT)
 
 	

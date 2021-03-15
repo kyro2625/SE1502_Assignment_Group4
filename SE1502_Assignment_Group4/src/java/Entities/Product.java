@@ -10,19 +10,19 @@ package Entities;
  * @author nguye
  */
 public class Product {
-    private String ProductID;
+    private int ProductID;
     private String ProductName;
     private String ProductBrand;
     private String ProductDescription;
     private String ProductStatus;
-    private String Price;
+    private float Price;
     private String ImageURL;
     private String CategoryID;
 
     public Product() {
     }
 
-    public Product(String ProductID, String ProductName, String ProductBrand, String ProductDescription, String ProductStatus, String Price, String ImageURL, String CategoryID) {
+    public Product(int ProductID, String ProductName, String ProductBrand, String ProductDescription, String ProductStatus, float Price, String ImageURL, String CategoryID) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.ProductBrand = ProductBrand;
@@ -33,11 +33,11 @@ public class Product {
         this.CategoryID = CategoryID;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return ProductID;
     }
 
-    public void setProductID(String ProductID) {
+    public void setProductID(int ProductID) {
         this.ProductID = ProductID;
     }
 
@@ -73,11 +73,11 @@ public class Product {
         this.ProductStatus = ProductStatus;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return Price;
     }
 
-    public void setPrice(String Price) {
+    public void setPrice(float Price) {
         this.Price = Price;
     }
 

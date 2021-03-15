@@ -1,13 +1,4 @@
-
-<%-- 
-    Document   : viewcart
-    Created on : Mar 11, 2021, 4:59:41 PM
-    Author     : Baby Bear
---%>
-
-<%@page import="Entities.CartItem"%>
-<%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +14,6 @@
                 width: 200px;
                 float: left;
             }
-
             footer{
                 clear: both;
                 height: 120px;
@@ -35,46 +25,35 @@
         <section>
             <table cellpadding="0" cellspacing="0" border="1" align="center" width="75">
                 <tr>
+                    <th>Option</th>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Photo</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Sub Total</th>
-                    <th>Option</th>
-                </tr>
-
-                <% ArrayList<CartItem> ldt = new ArrayList<>();
-                    ldt = (ArrayList<CartItem>) session.getAttribute("cart");
-                    double total = 0;
-                    if (ldt != null) {
-                        for (CartItem dt : ldt) {
-                            total = total + (Integer.parseInt(dt.getProduct().getPrice()) * dt.getQuantity());%>
-                <tr>
-                    <td><%=dt.getProduct().getProductID()%></td>
-                    <td><%=dt.getProduct().getProductName()%></td>
-                    <td><img src="images/<%=dt.getProduct().getImageURL()%>" width="100"></td>
-                    <td><%=dt.getProduct().getPrice()%></td>
-                    <td><%=dt.getQuantity()%></td>
-                    <td><%=(Integer.parseInt(dt.getProduct().getPrice()) * dt.getQuantity())%></td>
-                    <td align="center">
-                        <a href="CartServlet?action=remove&id=<%=dt.getProduct().getProductID()%>"
-                           onclick="return confirm('Are you sure?')">Remove</a>
-                    </td>
-                </tr>
-                <%}
-                } else {
-                %>
-                <tr>
-                    <th colspan="7" align="left"><br>Your cart is empty</th>
-                </tr>
-                <%}%>
+                    <c:set var="total" value="0"></c:set>
+                    <c:forEach var="item" items="${sessionScope.cart}">
+                        <c:set var="total" value="${total + item.product.Price * item.quantity }"></c:set>
+                        <tr>
+                            <td align="center">
+                                <a href="${pageContext.request.contextPath}/CartServlet?action=remove&id=${item.product.id}"
+                               onclick="return confirm('Are you sure?')">Remove</a>
+                            </td>
+                            <td>${item.product.id }</td>
+                            <td>${item.product.name }</td>
+                            <td><img src="${pageContext.request.contextPath}images/${item.product.photo }" width="120"></td>
+                            <td>${item.product.price }</td>
+                            <td>${item.quantity }</td>
+                            <td>${item.product.price * item.quantity }</td>
+                        </tr>   
+                    </c:forEach>
                 <tr>
                     <td colspan="6" align="right">Total</td>
-                    
+                    <td>${total}</td>
                 </tr>
             </table>
         </section>
-                <footer><br><br><a href="ProductServlet">View Product List</a></footer>
+        <footer><br><br><a href="ProductServlet">View Product List</a></footer>
     </body>
 </html>
