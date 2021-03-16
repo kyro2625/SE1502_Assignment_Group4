@@ -7,7 +7,7 @@
 
 <%@page import="java.util.ArrayList"%>
 
-<%@page import="Entities.Product"%>
+<%@page import="entities.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

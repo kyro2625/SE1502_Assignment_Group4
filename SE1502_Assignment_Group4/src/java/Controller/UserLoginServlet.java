@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package controller;
 
-import DAO.UserDAO;
-import Entities.User;
+import daos.UserDAO;
+import entities.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,51 +27,66 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "UserLoginServlet", urlPatterns = {"/UserLoginServlet"})
 public class UserLoginServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
+    private static final String SUCCESS = "mainUserPage.jsp";
+    private static final String ERROR = "userLoginPage.jsp";
 
-    public UserLoginServlet() {
-        super();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, Exception {
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
+        try {
+            String username = request.getParameter("userID");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            User user = dao.checkUserLogin(username, password);
+            if (user != null) {
+                url = SUCCESS;
+                HttpSession session = request.getSession();
+                session.setAttribute("USER", user);
+                session.setAttribute("Welcome", user.getUserName());
+
+            } else {
+                request.setAttribute("ERROR", "Invalid username and password");
+            }
+        } catch (Exception e) {
+            log("ERROR at LoginController: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
+        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(UserLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userID = request.getParameter("userID");
-        String userPassword = request.getParameter("password");
-
-        UserDAO userDao = new UserDAO();
-
         try {
-            User user = userDao.checkUserLogin(userID, userPassword);
-            String destPage = "userLoginPage.jsp";
-
-            if (user != null) {
-                HttpSession oldSession = request.getSession(false);
-                if (oldSession != null) {
-                    oldSession.invalidate();
-                }
-                HttpSession session = request.getSession();
-                String names = user.getUserName();
-                String userIDcookie = user.getUserID().trim();
-                session.setAttribute("names", names);
-                //setting session to expiry in 30 mins
-                session.setMaxInactiveInterval(30 * 60);
-                Cookie userName = new Cookie("user", userID);
-                userName.setMaxAge(30 * 60);
-                response.addCookie(userName);
-                response.sendRedirect("mainUserPage.jsp");
-            } else {
-                String message = "Invalid User ID or Password, please try again";
-                request.setAttribute("message", message);
-                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-
-                dispatcher.forward(request, response);
-            }
-
-//            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-//            dispatcher.forward(request, response);
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new ServletException(ex);
+            processRequest(request, response);
         } catch (Exception ex) {
             Logger.getLogger(UserLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

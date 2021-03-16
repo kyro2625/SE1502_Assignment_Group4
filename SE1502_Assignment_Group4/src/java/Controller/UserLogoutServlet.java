@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -40,29 +39,17 @@ public class UserLogoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals("JSESSIONID")) {
-//                    System.out.println("JSESSIONID=" + cookie.getValue());
-                cookie.setValue("");
-                cookie.setPath(request.getRequestURI());
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
-                break;
-//                }
+        try {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                session.removeAttribute("user");
+                session.invalidate();
             }
-        }
-        //invalidate the session if exists
-        HttpSession session = request.getSession(false);
-        System.out.println("User=" + session.getAttribute("user"));
-        if (session != null) {
-            session.removeAttribute("user");
-            session.invalidate();
+        } catch (Exception e) {
+            log("ERROR at UserLogoutController: " + e.getMessage());
+        } finally {
+            request.getRequestDispatcher("userLoginPage.jsp").forward(request, response);
 
-            session.setMaxInactiveInterval(0);
         }
-        response.sendRedirect("userLoginPage.jsp");
     }
 }

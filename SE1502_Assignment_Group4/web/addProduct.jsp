@@ -1,5 +1,5 @@
-<%@page import="Entities.Product"%>
-<%@page import="Entities.Category"%>
+<%@page import="entities.Product"%>
+<%@page import="entities.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%-- --%>

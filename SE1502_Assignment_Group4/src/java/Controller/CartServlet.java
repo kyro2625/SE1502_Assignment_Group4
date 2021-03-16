@@ -1,9 +1,8 @@
-package Controller;
+package controller;
 
-import DAO.ProductDAO;
-import Entities.CartItem;
+import daos.ProductDAO;
+import entities.CartItem;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
