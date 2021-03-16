@@ -87,8 +87,10 @@ public class CartServlet extends HttpServlet {
             }
             session.setAttribute("cart", cart);
         }
-        response.sendRedirect("CartServlet");
+        // Bu :)
+        displayCart(request, response);
     }
+    
 
     private int isExisting(int id, List<CartItem> cart) {
         for (int i = 0; i < cart.size(); i++) {

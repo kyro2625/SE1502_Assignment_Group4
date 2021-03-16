@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in project properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -7,86 +7,88 @@ package Entities;
 
 /**
  *
- * @author nguye
+ * @author cong :)
  */
+
+// Mot dat ten thuoc tinh thi chu dau tien viet thuong ko la con meo no troll :)
 public class Product {
-    private int ProductID;
-    private String ProductName;
-    private String ProductBrand;
-    private String ProductDescription;
-    private String ProductStatus;
-    private float Price;
-    private String ImageURL;
+    private int productID; // ???
+    private String productName; //???
+    private String productBrand;
+    private String productDescription;
+    private String productStatus;
+    private float price;
+    private String imageURL; // photo???
     private String CategoryID;
 
     public Product() {
     }
 
-    public Product(int ProductID, String ProductName, String ProductBrand, String ProductDescription, String ProductStatus, float Price, String ImageURL, String CategoryID) {
-        this.ProductID = ProductID;
-        this.ProductName = ProductName;
-        this.ProductBrand = ProductBrand;
-        this.ProductDescription = ProductDescription;
-        this.ProductStatus = ProductStatus;
-        this.Price = Price;
-        this.ImageURL = ImageURL;
+    public Product(int productID, String productName, String productBrand, String productDescription, String productStatus, float price, String imageURL, String CategoryID) {
+        this.productID = productID;
+        this.productName = productName;
+        this.productBrand = productBrand;
+        this.productDescription = productDescription;
+        this.productStatus = productStatus;
+        this.price = price;
+        this.imageURL = imageURL;
         this.CategoryID = CategoryID;
     }
 
     public int getProductID() {
-        return ProductID;
+        return productID;
     }
 
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
-    public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getProductBrand() {
-        return ProductBrand;
+        return productBrand;
     }
 
-    public void setProductBrand(String ProductBrand) {
-        this.ProductBrand = ProductBrand;
+    public void setProductBrand(String productBrand) {
+        this.productBrand = productBrand;
     }
 
     public String getProductDescription() {
-        return ProductDescription;
+        return productDescription;
     }
 
-    public void setProductDescription(String ProductDescription) {
-        this.ProductDescription = ProductDescription;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
     public String getProductStatus() {
-        return ProductStatus;
+        return productStatus;
     }
 
-    public void setProductStatus(String ProductStatus) {
-        this.ProductStatus = ProductStatus;
+    public void setProductStatus(String productStatus) {
+        this.productStatus = productStatus;
     }
 
     public float getPrice() {
-        return Price;
+        return price;
     }
 
-    public void setPrice(float Price) {
-        this.Price = Price;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public String getImageURL() {
-        return ImageURL;
+        return imageURL;
     }
 
-    public void setImageURL(String ImageURL) {
-        this.ImageURL = ImageURL;
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getCategoryID() {
