@@ -6,16 +6,19 @@
 package servlets;
 
 import daos.CategoryDAO;
+import daos.CheckOutDAO;
 import daos.ProductDAO;
 import dtos.CategoryDTO;
+import dtos.OrderDTO;
 import dtos.ProductDTO;
+import dtos.UserLoginDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,6 +39,12 @@ public class MainUserPageController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            HttpServletRequest req = (HttpServletRequest) request;
+            HttpSession session = req.getSession();
+            UserLoginDTO user = (UserLoginDTO) session.getAttribute("USER");
+            CheckOutDAO order = new CheckOutDAO();
+            List<OrderDTO> listOrders = order.getOrderByUserID(user.getUserID());
+            request.setAttribute("listOrders", listOrders);
             CategoryDAO dao1 = new CategoryDAO();
             List<CategoryDTO> listCategories = dao1.getAllCategories();
             request.setAttribute("listCategories", listCategories);

@@ -200,7 +200,7 @@ public class ProductDAO implements Serializable {
                 String categoryID = rs.getString("CategoryID");
                 CategoryDAO dao = new CategoryDAO();
                 CategoryDTO category = dao.getCategoryByID(categoryID);
-                ProductDTO product = new ProductDTO(Integer.parseInt(id), name, brand, description, status, Float.parseFloat(price), imageURL, category);
+                ProductDTO product = new ProductDTO(Integer.parseInt(productid), name, brand, description, status, Float.parseFloat(price), imageURL, category);
                 result.add(product);
             }
         } finally {

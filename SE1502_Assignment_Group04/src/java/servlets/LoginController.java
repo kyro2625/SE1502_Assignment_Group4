@@ -42,11 +42,14 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", user);
                 session.setAttribute("Welcome", user.getFullname());
+                session.setAttribute("role", user.getRole());
             } else if (user != null && user.getRole().equalsIgnoreCase("user")) {
                 url = SUCCESS_USER;
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", user);
                 session.setAttribute("Welcome", user.getFullname());
+                session.setAttribute("role", user.getRole());
+
             } else {
                 request.setAttribute("ERROR", "Invalid username and password");
             }

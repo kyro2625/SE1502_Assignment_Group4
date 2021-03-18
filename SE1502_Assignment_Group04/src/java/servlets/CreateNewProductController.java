@@ -69,8 +69,8 @@ public class CreateNewProductController extends HttpServlet {
                 errorObj.setNameError("Product Name is not supposed to be empty");
                 valid = false;
             }
-            if (!name.trim().isEmpty() && name.length() < 6) {
-                errorObj.setNameError("Product Name information of computer is greater than 6 characters");
+            if (!name.trim().isEmpty() && name.length() < 4) {
+                errorObj.setNameError("Product Name is greater than 4 characters");
                 valid = false;
             }
             if (brand.trim().isEmpty()) {
@@ -99,9 +99,10 @@ public class CreateNewProductController extends HttpServlet {
                 valid = false;
             }
             CategoryDTO categoryToDB = new CategoryDTO(category.split("-")[0].trim(), category.split("-")[1].trim(), "");
-            ProductDTO product = new ProductDTO(Integer.parseInt(id), name, brand, description, status, Float.parseFloat(price), imageURL, categoryToDB);
 
             if (valid) {
+                ProductDTO product = new ProductDTO(Integer.parseInt(id), name, brand, description, status, Float.parseFloat(price), imageURL, categoryToDB);
+
                 if (dao.insert(product)) {
                     url = SUCCESS;
                 } else {

@@ -3,10 +3,13 @@ package daos;
 import dtos.CartItem;
 import dtos.CategoryDTO;
 import dtos.OrderDTO;
+import dtos.OrderDetailDTO;
 import dtos.UserLoginDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import utils.DBContext;
 
 /**
@@ -91,5 +94,58 @@ public class CheckOutDAO {
             closeConnection();
         }
         return check;
+    }
+
+    public List<OrderDTO> getOrderByUserID(String id) throws Exception {
+
+        List<OrderDTO> result = null;
+        try {
+            String sql = "SELECT *\n"
+                    + "FROM tblOrder\n"
+                    + "WHERE UserID = ?\n";
+            DBContext db = new DBContext();
+            conn = db.getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, id);
+            rs = preStm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                int orderID = rs.getInt("OrderID");
+                String date = rs.getString("OrderDate");
+                String userID = rs.getString("UserID");
+                OrderDTO order = new OrderDTO(orderID, date, userID);
+                result.add(order);
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+
+    public List<OrderDetailDTO> getOrderDetailByOrderID(String id) throws Exception {
+
+        List<OrderDetailDTO> result = null;
+        try {
+            String sql = "SELECT *\n"
+                    + "FROM tblProduct P, tblOrderDetail D\n"
+                    + "WHERE P.ProductID = D.ProductID AND D.OrderID = ?\n";
+            DBContext db = new DBContext();
+            conn = db.getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, id);
+            rs = preStm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                String productID = rs.getString("ProductID");
+                String productName = rs.getString("ProductName");
+                String price = rs.getString("Price");
+                String quantity = rs.getString("Quantity");
+                OrderDetailDTO orderdetail = new OrderDetailDTO(productID, productName, Float.parseFloat(price), Integer.parseInt(quantity));
+                result.add(orderdetail);
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
 }

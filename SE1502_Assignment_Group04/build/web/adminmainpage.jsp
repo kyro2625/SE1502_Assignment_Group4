@@ -36,7 +36,7 @@
                                 <td>${dto2.fullname}</td>
                                 <td>${dto2.email}</td>
                                 <td>${dto2.address}</td>
-                                <c:url value="loadCategoryByID" var="updateLink">
+                                <c:url value="loadUserByID" var="updateLink">
                                     <c:param name="id" value="${dto2.userID}"/>
                                 </c:url>
                                 <td><a href="${updateLink}">Update</a> </td>

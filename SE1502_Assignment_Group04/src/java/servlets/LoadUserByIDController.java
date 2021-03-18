@@ -8,13 +8,7 @@ package servlets;
 import daos.UserLoginDAO;
 import dtos.UserLoginDTO;
 import java.io.IOException;
-
-import java.sql.SQLException;
-
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nguye
  */
-public class AddNewUserController extends HttpServlet {
+public class LoadUserByIDController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,17 +30,19 @@ public class AddNewUserController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            UserLoginDAO userdao = new UserLoginDAO();
-            List<UserLoginDTO> listUser = userdao.getAllAccount();
-            request.setAttribute("listUsers", listUser);
+       try {
+            String id = request.getParameter("id");
 
+            UserLoginDAO dao = new UserLoginDAO();
+            UserLoginDTO user = dao.getUserByID(id);
+            request.setAttribute("user", user);
+          
         } catch (Exception e) {
-            log("ERROR at AddNewProductController: " + e.getMessage());
+            log("ERROR at LoadUserByIDController: " + e.getMessage());
         } finally {
-            request.getRequestDispatcher("adduserform.jsp").forward(request, response);
+            request.getRequestDispatcher("updateuserform.jsp").forward(request, response);
         }
     }
 
@@ -62,11 +58,7 @@ public class AddNewUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(AddNewUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -80,11 +72,7 @@ public class AddNewUserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(AddNewUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

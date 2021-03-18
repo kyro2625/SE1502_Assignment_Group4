@@ -88,6 +88,18 @@
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>servlets.CheckOutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadUserByIDController</servlet-name>
+        <servlet-class>servlets.LoadUserByIDController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserController</servlet-name>
+        <servlet-class>servlets.UpdateUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadOrderDetailByOrderIDController</servlet-name>
+        <servlet-class>servlets.LoadOrderDetailByOrderIDController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -167,6 +179,18 @@
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
         <url-pattern>/CheckOutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadUserByIDController</servlet-name>
+        <url-pattern>/LoadUserByIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserController</servlet-name>
+        <url-pattern>/UpdateUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadOrderDetailByOrderIDController</servlet-name>
+        <url-pattern>/LoadOrderDetailByOrderIDController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

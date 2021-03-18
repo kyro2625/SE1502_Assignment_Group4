@@ -167,7 +167,8 @@ public class UserLoginDAO implements Serializable {
         }
         return result;
     }
-     public boolean delete(String id) throws Exception {
+
+    public boolean delete(String id) throws Exception {
         boolean check = false;
         try {
             String sql = "DELETE FROM tblUser\n"
@@ -177,6 +178,34 @@ public class UserLoginDAO implements Serializable {
             preStm = conn.prepareStatement(sql);
             preStm.setString(1, id);
             check = preStm.executeUpdate() > 0;
+        } finally {
+            closeConnection();
+        }
+        return check;
+    }
+
+    public boolean update(UserLoginDTO user) throws SQLException, NamingException, Exception {
+        boolean check = false;
+
+        try {
+            String sql = "UPDATE tblUser SET  UserPassword=?, UserName=?, UserEmail=?, UserAddress=? "
+                    + " WHERE UserID=? ";
+            DBContext db = new DBContext();
+            conn = db.getConnection();
+            if (conn != null) {
+                preStm = conn.prepareStatement(sql);
+
+                preStm.setString(1, user.getPassword());
+                preStm.setString(2, user.getFullname());
+                preStm.setString(3, user.getEmail());
+                preStm.setString(4, user.getAddress());
+                preStm.setString(5, user.getUserID());
+
+                check = preStm.executeUpdate() > 0;
+            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return false;
         } finally {
             closeConnection();
         }

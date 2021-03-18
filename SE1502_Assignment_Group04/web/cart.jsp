@@ -49,7 +49,7 @@
                     <td>${total}</td>
                 </tr>
             </table>
-                <a href="CheckOut">Check Out</a>
+                <a href="CheckOut"><h2>Check Out</h2></a>
         </section>
         <footer><br><br><a href="MainUserPage">View Product List</a></footer>
     </body>
