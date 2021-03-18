@@ -20,9 +20,7 @@
                         <tr>
                             <th>CATEGORY ID</th>
                             <th>CATEGORY NAME</th>
-                            <th>CATEGORY DESCRIPTION</th>
-                            <th></th>
-                            <th></th>
+                                
                         </tr>
                     </thead>
                     <tbody>

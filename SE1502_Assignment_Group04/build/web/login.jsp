@@ -12,7 +12,7 @@
         <title>Login</title>
     </head>
     <body>
-        <h1>Login for managing laptop</h1>
+        <h1>Login for managing balls</h1>
         
         <font color="red"> ${requestScope.ERRORNOTLOGIN}</font>
         <font color="red"> ${requestScope.ERROR}</font>

@@ -7,7 +7,7 @@
         <title>Update product information</title>
     </head>
     <body>
-        <h1>Update laptop information</h1>
+        <h1>Update product information</h1>
         <form action="updateProduct" method="POST">
             <table>
                 <tr>

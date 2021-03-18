@@ -23,10 +23,7 @@
                             <th>PRODUCT DESCRIPTION</th>
                             <th>PRODUCT STATUS</th>
                             <th>PRICE</th>
-                            <th>CATEGORY NAME</th>
-
-                            <th></th>
-                            <th></th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -40,17 +37,11 @@
                                 <td>${dto.status}</td>
                                 <td>${dto.price}</td>
 
-                                <c:url value="loadProductByID" var="updateLink">
-                                    <c:param name="id" value="${dto.id}"/>
-                                </c:url>
-                                <td>${dto.category.name}</td>
+                               <c:url value="cart" var="buyLink">
+                                <c:param name="action" value="buy"/>
+                            </c:url>
 
-                                <td><a href="${updateLink}">Update</a> </td>
-
-                                <c:url value="deleteProduct" var="deleteLink">
-                                    <c:param name="id" value="${dto.id}"/>
-                                </c:url>
-                                <td><a onclick="return confirmation()" href="${deleteLink}">Delete</a> </td>
+                            <td><a href="${buyLink}&id=${dto.id}">Buy</a> </td>
                             </tr>
                         </form>
                     </c:forEach>
@@ -61,7 +52,7 @@
             <h2>No Product here. Create new one below here</h2>
         </c:if>
     </c:if>
-    <h3> <a href="addNewProduct">Create new laptop</a> </h3>
+    <h3> <a href="addNewProduct">Create new product</a> </h3>
     <br> <br>
 
     <a href="mainAdminPage">Back to Supplier List</a>
