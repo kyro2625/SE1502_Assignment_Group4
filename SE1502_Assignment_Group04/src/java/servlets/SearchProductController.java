@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nguye
  */
-public class AddNewCategoryController extends HttpServlet {
+public class SearchProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,17 +35,19 @@ public class AddNewCategoryController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String product = request.getParameter("search");
             ProductDAO dao = new ProductDAO();
-            List<ProductDTO> listProduct = dao.getAllProduct();
-            CategoryDAO cate = new CategoryDAO();
-            List<CategoryDTO> listCategories = cate.getAllCategories();
-            request.setAttribute("listProduct", listProduct);
-            request.setAttribute("listCategories", listCategories);
+            List<ProductDTO> listProduct = dao.getProductByProductName(product);
+            request.setAttribute("foundResults", listProduct);
+            request.setAttribute("keyword", product);
+            CategoryDAO category = new CategoryDAO();
+           
 
         } catch (Exception e) {
-            log("ERROR at AddNewProductController: " + e.getMessage());
+            log("ERROR at SearchProductController: " + e.getMessage());
+            e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("addcategoryform.jsp").forward(request, response);
+            request.getRequestDispatcher("searchresult.jsp").forward(request, response);
         }
     }
 

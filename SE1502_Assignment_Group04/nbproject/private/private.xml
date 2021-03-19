@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/CreateNewUserController.java</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/MainUserPageController.java</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/dtos/CartItem.java</file>
+            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/web/listproductbycategory.jsp</file>
+            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/SearchProductController.java</file>
             <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/web/usermainpage.jsp</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/CheckOutController.java</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/web/cart.jsp</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/CreateNewCategoryController.java</file>
-            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/daos/CheckOutDAO.java</file>
+            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/web/searchresult.jsp</file>
+            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/servlets/LoadProductByCategoryController.java</file>
+            <file>file:/E:/Study%20At%20FPTU/4.%20Spring%202021/PRJ301%20-%20Web-based%20Java%20Applications%20-%20VanVTT/Demo_PRJ301_Java_Web-based_App/Netbeans/SE1502_Assignment_Group04/src/java/daos/ProductDAO.java</file>
         </group>
     </open-files>
 </project-private>

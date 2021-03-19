@@ -82,7 +82,7 @@ public class CreateNewProductController extends HttpServlet {
                 valid = false;
             }
             if (status.trim().isEmpty()) {
-                errorObj.setStatusError("Product Status must be number and in range: 1900-2099");
+                errorObj.setStatusError("Product Status is not supposed to be empty");
                 valid = false;
             }
             if (price.trim().isEmpty()) {

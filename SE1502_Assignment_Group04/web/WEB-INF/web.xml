@@ -100,6 +100,10 @@
         <servlet-name>LoadOrderDetailByOrderIDController</servlet-name>
         <servlet-class>servlets.LoadOrderDetailByOrderIDController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductController</servlet-name>
+        <servlet-class>servlets.SearchProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>LoadOrderDetailByOrderIDController</servlet-name>
         <url-pattern>/LoadOrderDetailByOrderIDController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductController</servlet-name>
+        <url-pattern>/SearchProductController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

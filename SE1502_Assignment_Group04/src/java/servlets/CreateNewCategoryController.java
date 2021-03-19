@@ -6,11 +6,8 @@
 package servlets;
 
 import daos.CategoryDAO;
-import daos.ProductDAO;
 import dtos.CategoryDTO;
 import dtos.CategoryErrorObject;
-import dtos.ProductDTO;
-import dtos.ProductErrorObject;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,9 +55,7 @@ public class CreateNewCategoryController extends HttpServlet {
             if (dao.getCategoryByID(id) != null) {
                 errorObj.setIdError("This Category ID is existed. Choose another one");
                 valid = false;
-            }
-//            CategoryDTO categoryToDB = new CategoryDTO(category.split("-")[0].trim(), category.split("-")[1].trim(), "");
-//            ProductDTO product = new ProductDTO(id, name, brand, description, status, price, imageURL, categoryToDB);
+            }       
             CategoryDTO category = new CategoryDTO(id, name, description);
             if (valid) {
                 if (dao.insert(category)) {

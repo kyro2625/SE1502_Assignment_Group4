@@ -209,6 +209,39 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
+     public List<ProductDTO> getProductByProductName(String id) throws Exception {
+
+        List<ProductDTO> result = null;
+        try {
+            String sql = "SELECT *\n"
+                    + "FROM tblProduct\n"
+                    + "WHERE ProductName LIKE ?\n";
+            DBContext db = new DBContext();
+            conn = db.getConnection();
+            preStm = conn.prepareStatement(sql);
+            preStm.setString(1, id);
+
+            rs = preStm.executeQuery();
+            result = new ArrayList<>();
+            while (rs.next()) {
+                String productid = rs.getString("ProductID");
+                String name = rs.getString("ProductName");
+                String brand = rs.getString("ProductBrand");
+                String description = rs.getString("ProductDescription");
+                String status = rs.getString("ProductStatus");
+                String price = rs.getString("Price");
+                String imageURL = rs.getString("ImageURL");
+                String categoryID = rs.getString("CategoryID");
+                CategoryDAO dao = new CategoryDAO();
+                CategoryDTO category = dao.getCategoryByID(categoryID);
+                ProductDTO product = new ProductDTO(Integer.parseInt(productid), name, brand, description, status, Float.parseFloat(price), imageURL, category);
+                result.add(product);
+            }
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
     private List<ProductDTO> products;
 
     public ProductDAO() {

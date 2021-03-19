@@ -22,7 +22,7 @@ CREATE TABLE tblUser(UserID nvarchar(50) PRIMARY KEY NOT NULL, UserPassword nvar
 
 
 
-CREATE TABLE tblOrder(OrderID int IDENTITY(100,5) PRIMARY KEY NOT NULL,   OrderDate date DEFAULT GETDATE(),
+CREATE TABLE tblOrder(OrderID int IDENTITY(100,5) PRIMARY KEY NOT NULL,   OrderDate smalldatetime DEFAULT GETDATE(),
 	UserID nvarchar(50) NOT NULL FOREIGN KEY REFERENCES tblUser(UserID) on delete cascade on update cascade)
 
 

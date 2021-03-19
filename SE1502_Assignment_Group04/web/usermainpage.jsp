@@ -10,15 +10,19 @@
         <p style="display: inline-block">Welcome, ${sessionScope.Welcome} ||</p>
         <c:url value="logout" var="logoutLink" />
         <a href="${logoutLink}">Logout</a>
+        <c:url value="Cart" var="CartLink" />
+        <h3 style="display: inline-block; float: right"> <a href="${CartLink}">View Shopping Cart</a> </h3>
+        <br> <br> <hr>
         <div style="text-align: center">
-            <form action="search" method="POST">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit">Submit</button>
+            
+            <form action="searchProduct" method="POST">
+                <input type="text" placeholder="Search product name..." name="search">
+                <button type="submit">Search</button>
             </form>
         </div>
         <h1 style="text-align: center">SPORTS SHOPPING</h1>
         <h3>${requestScope.PaySuccess}</h3>
-        <div style="font-weight: bold">View Product by Category</div>
+        <div style="font-weight: bold; font-size: 120%">View Product by Category</div>
 
         <c:if test="${requestScope.listCategories!=null}">
             <c:if test="${not empty requestScope.listCategories}" var="testEmpty">
@@ -129,8 +133,7 @@
         </c:if>
     </div>
     <br> <br>
-    <c:url value="Cart" var="CartLink" />
-    <h3> <a href="${CartLink}">View Shopping Cart</a> </h3>
+
     <script>
         function confirmation() {
             var r = confirm("Are you sure you want to delete this?");
