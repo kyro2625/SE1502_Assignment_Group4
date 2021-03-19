@@ -20,7 +20,7 @@
                 <button type="submit">Search</button>
             </form>
         </div>
-        <h1 style="text-align: center">SPORTS SHOPPING</h1>
+        <h1 style="text-align: center">SPORTS BALL SHOPPING</h1>
         <h2 style="color: blue">${requestScope.PaySuccess}</h2>
         <hr>
         <div style="font-weight: bold; font-size: 120%">View Product by Category</div>
@@ -31,7 +31,6 @@
                     <thead>
                         <tr>
                             <th>CATEGORY NAME</th>
-
                         </tr>
                     </thead>
                     <tbody>

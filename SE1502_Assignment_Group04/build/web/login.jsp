@@ -12,7 +12,7 @@
         <title>Login</title>
     </head>
     <body>
-        <h1 style="text-align: center">SPORT SHOPPING LOGIN</h1>
+        <h1 style="text-align: center">SPORTS BALL SHOPPING LOGIN</h1>
         <p style="text-align: center">Please login to use full function of this website</p>
         <hr>
         

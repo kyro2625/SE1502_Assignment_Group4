@@ -58,7 +58,7 @@ public class CheckOutController extends HttpServlet {
             log("ERROR at CheckOutController: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher("MainUserPageController").forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
 
         }
     }

@@ -5,11 +5,13 @@
  */
 package dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nguye
  */
-public class OrderDTO {
+public class OrderDTO implements Serializable{
     private int id;
     private String date, userID;
 

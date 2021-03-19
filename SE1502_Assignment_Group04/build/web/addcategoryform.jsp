@@ -7,7 +7,7 @@
         <title>Add new Category</title>
     </head>
     <body>
-        <h1>Add new product information</h1>
+        <h1>Add new category information</h1>
         <form action="createNewCategory" method="POST" name="f1">
             <table>
                 <tr>

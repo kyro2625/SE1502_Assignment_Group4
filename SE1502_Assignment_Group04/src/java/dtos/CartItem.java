@@ -1,10 +1,12 @@
 package dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author nguye
  */
-public class CartItem {
+public class CartItem implements Serializable{
 
     private ProductDTO product;
     private int quantity;

@@ -5,11 +5,13 @@
  */
 package dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Admin
  */
-public class ProductDTO {
+public class ProductDTO implements Serializable{
     private int id;
     private String name, brand, description, status, imageURL;
     private float price;

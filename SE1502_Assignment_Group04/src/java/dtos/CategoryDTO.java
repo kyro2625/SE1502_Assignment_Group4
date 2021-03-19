@@ -5,11 +5,13 @@
  */
 package dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Admin
  */
-public class CategoryDTO {
+public class CategoryDTO implements Serializable{
     private String id, name, description;
 
     public CategoryDTO() {
