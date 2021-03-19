@@ -23,16 +23,16 @@ public class CreateNewCategoryController extends HttpServlet {
     private static final String SUCCESS = "MainAdminPageController";
     private static final String ERROR = "error.jsp";
     private static final String INVALID = "AddNewCategoryController";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = ERROR;
+        String url = ERROR;
         try {
             String id = request.getParameter("txtID");
             String name = request.getParameter("txtName");
             String description = request.getParameter("txtDescription");
-           
+
             boolean valid = true;
             CategoryErrorObject errorObj = new CategoryErrorObject();
             if (id.trim().isEmpty()) {
@@ -40,7 +40,7 @@ public class CreateNewCategoryController extends HttpServlet {
                 valid = false;
             }
             if (!id.trim().isEmpty() && !id.matches("[0-9]{3}")) {
-                errorObj.setIdError("Category ID must be numberical, 4 digits");
+                errorObj.setIdError("Category ID must be numberical, 3 digits");
                 valid = false;
             }
             if (name.trim().isEmpty()) {
@@ -55,7 +55,7 @@ public class CreateNewCategoryController extends HttpServlet {
             if (dao.getCategoryByID(id) != null) {
                 errorObj.setIdError("This Category ID is existed. Choose another one");
                 valid = false;
-            }       
+            }
             CategoryDTO category = new CategoryDTO(id, name, description);
             if (valid) {
                 if (dao.insert(category)) {

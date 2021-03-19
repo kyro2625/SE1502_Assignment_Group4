@@ -14,14 +14,15 @@
         <h3 style="display: inline-block; float: right"> <a href="${CartLink}">View Shopping Cart</a> </h3>
         <br> <br> <hr>
         <div style="text-align: center">
-            
+
             <form action="searchProduct" method="POST">
                 <input type="text" placeholder="Search product name..." name="search">
                 <button type="submit">Search</button>
             </form>
         </div>
         <h1 style="text-align: center">SPORTS SHOPPING</h1>
-        <h3>${requestScope.PaySuccess}</h3>
+        <h2 style="color: blue">${requestScope.PaySuccess}</h2>
+        <hr>
         <div style="font-weight: bold; font-size: 120%">View Product by Category</div>
 
         <c:if test="${requestScope.listCategories!=null}">

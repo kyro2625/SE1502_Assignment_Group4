@@ -39,9 +39,9 @@
 
 
             </table>
-            <button type="submit" class="registerbtn">Register</button>
+            <button type="submit" class="registerbtn">Update</button>
         </div>
-    </form>   
+    </form>
     <a href="mainAdminPage">Back to Admin Page</a>
 
 </body>

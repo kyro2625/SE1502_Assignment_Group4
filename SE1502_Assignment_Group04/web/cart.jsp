@@ -42,15 +42,22 @@
                         <td>${item.product.price }</td>
                         <td>${item.quantity }</td>
                         <td>${item.product.price * item.quantity }</td>
-                    </tr>   
+                    </tr>
                 </c:forEach>
                 <tr>
                     <td colspan="6" align="right" style="font-weight: bold; font-size: 120%; text-align: right">Total</td>
                     <td>${total}</td>
                 </tr>
             </table>
-                <a href="CheckOut"><h2>Check Out</h2></a>
+            <a onclick="return confirmation()" href="CheckOut"><h2 style="">Pay Now</h2></a>
         </section>
-        <footer><br><br><a href="MainUserPage">View Product List</a></footer>
+        <hr>
+        <footer><br><br><a  href="MainUserPage">View Product List</a></footer>
+        <script>
+            function confirmation() {
+                var r = confirm("Are you sure you want to complete this order?");
+                return r;
+            }
+        </script>
     </body>
 </html>

@@ -27,7 +27,6 @@ public class CheckOutController extends HttpServlet {
 
     private static final String SUCCESS = "MainUserPageController";
     private static final String ERROR = "error.jsp";
-    private static final String INVALID = "AddNewCategoryController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
@@ -48,8 +47,13 @@ public class CheckOutController extends HttpServlet {
                     }
                 }
                 url = SUCCESS;
-                request.setAttribute("PaySuccess", "Your cart is successfully check out");
+                cart.removeAll(cart);
+                request.setAttribute("PaySuccess", "Your shopping cart has been successfully paid. Your order ID is: " + order.getId());
+            } else {
+                url = ERROR;
+                request.setAttribute("ERROR", "Something wrong has happened, please try again!");
             }
+
         } catch (Exception e) {
             log("ERROR at CheckOutController: " + e.getMessage());
             e.printStackTrace();

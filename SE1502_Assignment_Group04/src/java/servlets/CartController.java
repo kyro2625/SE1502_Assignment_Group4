@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import daos.ProductDAO;
@@ -43,7 +38,8 @@ public class CartController extends HttpServlet {
 
     protected void displayCart(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+//        request.getRequestDispatcher("cart.jsp").forward(request, response);
+        response.sendRedirect("cart.jsp");
     }
 
     protected void removeItem(HttpServletRequest request, HttpServletResponse response)
@@ -66,11 +62,10 @@ public class CartController extends HttpServlet {
 
         if (session.getAttribute("cart") == null) {
             List<CartItem> cart = new ArrayList<CartItem>();
-            
+
             cart.add(new CartItem(product.find(Integer.parseInt(request.getParameter("id"))), 1));
             session.setAttribute("cart", cart);
         } else {
-           
 
             List<CartItem> cart = (List<CartItem>) session.getAttribute("cart");
             int index = isExisting(Integer.parseInt(request.getParameter("id")), cart);
@@ -85,13 +80,12 @@ public class CartController extends HttpServlet {
         // Bu :)
         displayCart(request, response);
     }
-    
 
     private int isExisting(int id, List<CartItem> cart) {
         int proid = id;
         Integer productID = new Integer(proid);
         for (int i = 0; i < cart.size(); i++) {
-            if (cart.get(i).getProduct().getId() ==id) {
+            if (cart.get(i).getProduct().getId() == id) {
                 return i;
             }
         }

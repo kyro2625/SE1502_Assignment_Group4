@@ -55,7 +55,7 @@
             </table>
         </c:if>
         <c:if test="${!testEmpty}">
-            <h2>No User Account here. Add one below here</h2>
+            <h2>No User Account here. Add one here</h2>
         </c:if>
     </c:if>
     <hr><br>
@@ -102,7 +102,7 @@
         </table>
     </c:if>
     <c:if test="${!testEmpty}">
-        <h2>No Category here. Add one below here</h2>
+        <h2>No Category here. Add one here</h2>
     </c:if>
 </c:if>
 <hr><br>
@@ -155,7 +155,7 @@
     </table>
 </c:if>
 <c:if test="${!testEmpty}">
-    <h2>No Product here. Create new one below here</h2>
+    <h2>No Product here. Create new one here</h2>
 </c:if>
 </c:if>
 <br> <br>

@@ -209,7 +209,7 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
-     public List<ProductDTO> getProductByProductName(String id) throws Exception {
+    public List<ProductDTO> getProductByProductName(String name) throws Exception {
 
         List<ProductDTO> result = null;
         try {
@@ -219,13 +219,13 @@ public class ProductDAO implements Serializable {
             DBContext db = new DBContext();
             conn = db.getConnection();
             preStm = conn.prepareStatement(sql);
-            preStm.setString(1, id);
+            preStm.setString(1, "%" + name + "%");
 
             rs = preStm.executeQuery();
             result = new ArrayList<>();
             while (rs.next()) {
                 String productid = rs.getString("ProductID");
-                String name = rs.getString("ProductName");
+                String names = rs.getString("ProductName");
                 String brand = rs.getString("ProductBrand");
                 String description = rs.getString("ProductDescription");
                 String status = rs.getString("ProductStatus");
@@ -234,7 +234,7 @@ public class ProductDAO implements Serializable {
                 String categoryID = rs.getString("CategoryID");
                 CategoryDAO dao = new CategoryDAO();
                 CategoryDTO category = dao.getCategoryByID(categoryID);
-                ProductDTO product = new ProductDTO(Integer.parseInt(productid), name, brand, description, status, Float.parseFloat(price), imageURL, category);
+                ProductDTO product = new ProductDTO(Integer.parseInt(productid), names, brand, description, status, Float.parseFloat(price), imageURL, category);
                 result.add(product);
             }
         } finally {
