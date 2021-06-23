@@ -13,7 +13,7 @@
         <h1>SYSTEM ADMIN Management</h1>
         <hr><br>
         <h2>User account management</h2>
-        <c:url value="addNewUser" var="addNewUser" />
+        <c:url value="addNewPatient.jsp" var="addNewUser" />
         <h3> <a href="${addNewUser}">Create new user</a> </h3>
         <c:if test="${requestScope.listUsers!=null}">
             <c:if test="${not empty requestScope.listUsers}" var="testEmpty">

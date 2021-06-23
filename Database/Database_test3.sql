@@ -1,9 +1,9 @@
 USE [master]
 GO
-/****** Object:  Database [SE1502_Assignment_Group04_test3]    Script Date: 19-Mar-21 3:58:02 PM ******/
-CREATE DATABASE [SE1502_Assignment_Group04_test3]
+/****** Object:  Database [SE1502_Assignment_Group04]    Script Date: 19-Mar-21 3:58:02 PM ******/
+CREATE DATABASE [SE1502_Assignment_Group04]
 GO
-USE [SE1502_Assignment_Group04_test3]
+USE [SE1502_Assignment_Group04]
 GO
 /****** Object:  Table [dbo].[tblCategory]    Script Date: 19-Mar-21 3:58:02 PM ******/
 SET ANSI_NULLS ON
@@ -199,5 +199,5 @@ ON DELETE CASCADE
 GO
 USE [master]
 GO
-ALTER DATABASE [SE1502_Assignment_Group04_test3] SET  READ_WRITE 
+ALTER DATABASE [SE1502_Assignment_Group04] SET  READ_WRITE 
 GO
